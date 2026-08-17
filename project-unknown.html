@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Unknown · Karim William</title>
+<meta name="description" content="Project Unknown: an online co-op horror game by Psycho Ravens. Very Positive on Steam. Gameplay programming by Karim William.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="nav-mark">KARIM WILLIAM</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">MENU</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#loadout">Skills</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="game-hero">
+    <div class="game-hero-bg" style="background-image:url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2115390/page_bg_raw.jpg?t=1760148017');"></div>
+    <div class="game-hero-scrim"></div>
+    <div class="wrap game-hero-inner">
+      <a class="back-link" href="index.html">← Back to portfolio</a>
+      <span class="p-eyebrow">Psycho Ravens · Released Oct 10, 2025 · Very Positive (775 Reviews)</span>
+      <h1>Project Unknown</h1>
+      <p class="game-tagline">An online co-op horror game where you and your team exorcise ghosts from
+      haunted properties for a paycheck. I built the progression systems, the account backend, and the AI
+      behind the game's signature enemy.</p>
+
+      <div class="meta-row">
+        <div class="meta-item"><span class="meta-label">Developer</span><span class="meta-value">Psycho Ravens</span></div>
+        <div class="meta-item"><span class="meta-label">My Role</span><span class="meta-value">Junior Gameplay Programmer</span></div>
+        <div class="meta-item"><span class="meta-label">Engine</span><span class="meta-value">Unreal Engine 5 (C++)</span></div>
+        <div class="meta-item"><span class="meta-label">Genre</span><span class="meta-value">Horror, Co-op, Multiplayer</span></div>
+        <div class="meta-item"><span class="meta-label">Team Size</span><span class="meta-value">6</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="banner"><h2>Overview</h2><div class="rule"></div></div>
+      <p class="about-body">
+        You play a member of Paranormal Property Solutions, taking on requests from clients whose homes have
+        picked up an unwelcome tenant. Track each haunting, work out its patterns, and clear it out with a
+        team of up to four, using a kit of paranormal tools and each character's unique ability.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="banner"><h2>Trailer</h2><div class="rule"></div></div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/Gw_IGspQ9Wk" title="Project Unknown Trailer" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="banner"><h2>My Contribution</h2><div class="rule"></div></div>
+      <ul class="contribution-list lg">
+        <li>Built <strong>GAS-driven character progression and skill trees</strong>, along with the persistent account data backend handling player unlocks and progress across sessions.</li>
+        <li>Designed the game's <strong>signature hide-and-seek enemy AI</strong>. It uses the Environment Query System (EQS) to read player paths and likely room-entry points, scoring candidate hiding spots for concealment automatically, so it works across every level with no manual tuning.</li>
+        <li>Built a <strong>dynamic map events system</strong> and an in-run camera item mechanic that gives players environmental hints.</li>
+        <li>Shipped the game's <strong>30 Steam achievements</strong> and contributed across AI, backend, and multiplayer systems as part of a small team.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="padding:48px 0;">
+    <div class="wrap">
+      <a class="btn ghost" href="https://store.steampowered.com/app/2115390/Project_Unknown/" target="_blank" rel="noopener">View on Steam ↗</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap next-game">
+      <a href="index.html#work">← Back to all work</a>
+      <a href="unannounced-title.html">Next: Unannounced Title →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Karim William · Gameplay Programmer</span>
+    <span>Giza, Egypt</span>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const banners = document.querySelectorAll('.banner');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    banners.forEach(b => io.observe(b));
+  } else {
+    banners.forEach(b => b.classList.add('in-view'));
+  }
+</script>
+
+</body>
+</html>

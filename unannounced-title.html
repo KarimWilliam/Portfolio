@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unannounced Title · Karim William</title>
+<meta name="description" content="An unannounced multiplayer PvP title at Psycho Ravens. Gameplay programming by Karim William.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .locked-hero{
+    padding:120px 0 96px;
+    background-image:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(200,155,60,0.08), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(138,58,50,0.06), transparent 55%);
+  }
+  .locked-glyph{
+    font-family:var(--display); font-size:3rem; color:var(--steel);
+    border:1px dashed var(--steel); width:76px; height:76px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:28px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="nav-mark">KARIM WILLIAM</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">MENU</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#loadout">Skills</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="locked-hero">
+    <div class="wrap">
+      <a class="back-link" href="index.html">← Back to portfolio</a>
+      <div class="locked-glyph">?</div>
+      <span class="p-eyebrow">Psycho Ravens · In Development</span>
+      <h1 style="font-family:var(--display); font-weight:700; font-size:clamp(2.2rem, 6vw, 3.6rem); color:var(--parchment); margin:0 0 16px 0; letter-spacing:0.02em;">Unannounced Title</h1>
+      <p class="game-tagline">A multiplayer PvP title currently in development at Psycho Ravens. Under
+      wraps until it's ready to show, so this page is intentionally light on specifics and heavy on what I
+      actually built.</p>
+
+      <div class="meta-row">
+        <div class="meta-item"><span class="meta-label">Studio</span><span class="meta-value">Psycho Ravens</span></div>
+        <div class="meta-item"><span class="meta-label">My Role</span><span class="meta-value">Gameplay Programmer</span></div>
+        <div class="meta-item"><span class="meta-label">Engine</span><span class="meta-value">Unreal Engine 5 (C++)</span></div>
+        <div class="meta-item"><span class="meta-label">Genre</span><span class="meta-value">Action, Multiplayer, PvP</span></div>
+        <div class="meta-item"><span class="meta-label">Team Size</span><span class="meta-value">11</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="banner"><h2>Overview</h2><div class="rule"></div></div>
+      <p class="about-body">
+        A multiplayer PvP title built around server-authoritative combat, large-scale procedurally generated
+        worlds, and a custom AI framework. Full details are staying under wraps until the studio is ready to
+        reveal it.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="banner"><h2>My Contribution</h2><div class="rule"></div></div>
+      <ul class="contribution-list lg">
+        <li>Own <strong>server-authoritative multiplayer PvP combat</strong> with client-side prediction, hardened against cheating and refined across many iterations of live testing.</li>
+        <li>Built <strong>predicted projectiles</strong> and a <strong>lag-compensating hit registration system</strong> so higher-ping players aren't put at a disadvantage.</li>
+        <li>Drive <strong>procedural generation of large-scale maps with PCG</strong>: heightmaps, biomes, points of interest, roads, resource nodes, and a mini-map.</li>
+        <li>Designed a <strong>custom AI framework</strong> replacing Unreal's Behavior Trees, powering agents from wildlife to NPCs that use inventory and weapons, as well as ridable mounts.</li>
+        <li>Mentor junior engineers on debugging and system architecture.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap next-game">
+      <a href="project-unknown.html">← Previous: Project Unknown</a>
+      <a href="crowns-trial.html">Next: Crown's Trial →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Karim William · Gameplay Programmer</span>
+    <span>Giza, Egypt</span>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const banners = document.querySelectorAll('.banner');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    banners.forEach(b => io.observe(b));
+  } else {
+    banners.forEach(b => b.classList.add('in-view'));
+  }
+</script>
+
+</body>
+</html>
